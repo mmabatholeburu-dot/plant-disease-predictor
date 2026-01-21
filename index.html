@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Plant Disease Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f8f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: white;
+            padding: 25px;
+            width: 400px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #2e7d32;
+        }
+
+        label {
+            font-weight: bold;
+            margin-top: 10px;
+            display: block;
+        }
+
+        select, button {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border-radius: 5px;
+        }
+
+        button {
+            background: #2e7d32;
+            color: white;
+            border: none;
+            margin-top: 15px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1b5e20;
+        }
+
+        #result {
+            margin-top: 15px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>🌿 Plant Disease Predictor</h2>
+
+    <label>Leaf Color</label>
+    <select id="color">
+        <option value="green">Green</option>
+        <option value="yellow">Yellow</option>
+        <option value="brown">Brown</option>
+    </select>
+
+    <label>Leaf Spots</label>
+    <select id="spots">
+        <option value="no">No</option>
+        <option value="yes">Yes</option>
+    </select>
+
+    <label>Plant Wilting</label>
+    <select id="wilting">
+        <option value="no">No</option>
+        <option value="yes">Yes</option>
+    </select>
+
+    <label>Soil Moisture</label>
+    <select id="moisture">
+        <option value="normal">Normal</option>
+        <option value="dry">Dry</option>
+        <option value="wet">Wet</option>
+    </select>
+
+    <button onclick="predictDisease()">Predict Disease</button>
+
+    <div id="result"></div>
+</div>
+
+<script>
+function predictDisease() {
+    let color = document.getElementById("color").value;
+    let spots = document.getElementById("spots").value;
+    let wilting = document.getElementById("wilting").value;
+    let moisture = document.getElementById("moisture").value;
+
+    let disease = "";
+
+    if (spots === "yes" && color === "brown") {
+        disease = "Leaf Spot Disease";
+    } 
+    else if (color === "yellow" && wilting === "yes") {
+        disease = "Root Rot Disease";
+    }
+    else if (wilting === "yes" && moisture === "dry") {
+        disease = "Drought Stress";
+    }
+    else if (color === "green" && spots === "no") {
+        disease = "Healthy Plant 🌱";
+    }
+    else {
+        disease = "Possible Nutrient Deficiency";
+    }
+
+    document.getElementById("result").innerHTML =
+        "🧪 Prediction Result: <br><strong>" + disease + "</strong>";
+}
+</script>
+
+</body>
+</html>
